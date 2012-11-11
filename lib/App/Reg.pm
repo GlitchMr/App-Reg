@@ -13,10 +13,6 @@ __END__
 
 App::Reg - re 'debug' wrapper
 
-=head1 VERSION
-
-version 1.0.1
-
 =head1 SYNOPSIS
 
   reg [options] [string] [regex]
