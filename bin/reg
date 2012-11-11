@@ -22,7 +22,7 @@ version 1.0
 
 =head1 SYNOPSIS
 
-reg [options] [string] [regex]
+  reg [options] [string] [regex]
 
   Options:
     -help            brief help message
