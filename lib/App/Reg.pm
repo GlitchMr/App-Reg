@@ -2,7 +2,7 @@ package App::Reg;
 use strict;
 use warnings;
 
-our $VERSION = '1.0.3';
+our $VERSION = '1.1.0';
 
 # Return positive value
 1;
