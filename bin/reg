@@ -32,6 +32,7 @@ reg - re 'debug' wrapper
 
   Options:
     -help            brief help message
+    -version         show version of reg
 
 =head1 OPTIONS
 
