@@ -41,6 +41,10 @@ reg - re 'debug' wrapper
 
 Print a brief help message and exits.
 
+=item B<-version>
+
+Shows current reg version.
+
 =back
 
 =head1 DESCRIPTION
