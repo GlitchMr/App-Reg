@@ -10,7 +10,7 @@ use re qw[eval debugcolor];
 pod2usage 2 unless GetOptions
     help    => \my $help,
     version => \my $version,
-or @ARGV == 2;
+and @ARGV == 2;
 
 pod2usage 1 if $help;
 
