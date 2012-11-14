@@ -5,13 +5,20 @@ use App::Reg;
 use Getopt::Long;
 use Pod::Usage;
 use Encode;
-use re qw[eval debugcolor];
 
-pod2usage 2 unless GetOptions
-    help    => \my $help,
-    version => \my $version,
-    global  => \my $global,
-and @ARGV == 2;
+my $help;
+my $version;
+my $global;
+my $no_color;
+BEGIN {
+    pod2usage 2 unless GetOptions
+        'help'     => \$help,
+        'version'  => \$version,
+        'global'   => \$global,
+        'no-color' => \$no_color,
+    and @ARGV == 2;
+}
+use re 'eval', $no_color ? 'debug' : 'debugcolor';
 
 pod2usage 1 if $help;
 
@@ -42,6 +49,7 @@ reg - re 'debug' wrapper
   Options:
     -global          multiple matches
     -help            brief help message
+    -no-color        disables ansi sequences
     -version         show version of reg
 
 =head1 OPTIONS
@@ -56,6 +64,11 @@ was used on RegExp.
 =item B<-help>
 
 Print a brief help message and exits.
+
+=item B<-no-color>
+
+Disables ANSI sequences and enforces the text-only representation of
+RegEx debugger. Useful when pasting the output of RegEx debugger.
 
 =item B<-version>
 
