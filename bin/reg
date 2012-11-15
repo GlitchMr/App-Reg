@@ -11,6 +11,7 @@ pod2usage 2 unless GetOptions
     'version'  => \my $version,
     'global'   => \my $global,
     'no-color' => \my $no_color,
+    'ascii'    => \my $ascii,
 and @ARGV == 2;
 
 pod2usage 1 if $help;
@@ -20,7 +21,9 @@ if ($version) {
     exit 1;
 }
 
-my ($str, $regex) = map { decode 'UTF-8', $_ } @ARGV;
+@ARGV = map { decode 'UTF-8', $_ } @ARGV unless $ascii;
+
+my ($str, $regex) = @ARGV;
 
 reg $str, $regex, global => $global, color => !$no_color;
 
@@ -33,6 +36,7 @@ reg - re 'debug' wrapper
   reg [options] [string] [regex]
 
   Options:
+    -ascii           use ASCII encoding for matching
     -global          multiple matches
     -help            brief help message
     -no-color        disables ansi sequences
@@ -41,6 +45,12 @@ reg - re 'debug' wrapper
 =head1 OPTIONS
 
 =over 4
+
+=item B<-ascii>
+
+Uses ASCII encoding for matching. In particular it means that the data
+given to this utility is threated as binary data and C<\d> only matches
+C<[0-9]>.
 
 =item B<-global>
 
