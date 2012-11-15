@@ -6,19 +6,12 @@ use Getopt::Long;
 use Pod::Usage;
 use Encode;
 
-my $help;
-my $version;
-my $global;
-my $no_color;
-BEGIN {
-    pod2usage 2 unless GetOptions
-        'help'     => \$help,
-        'version'  => \$version,
-        'global'   => \$global,
-        'no-color' => \$no_color,
-    and @ARGV == 2;
-}
-use re 'eval', $no_color ? 'debug' : 'debugcolor';
+pod2usage 2 unless GetOptions
+    'help'     => \my $help,
+    'version'  => \my $version,
+    'global'   => \my $global,
+    'no-color' => \my $no_color,
+and @ARGV == 2;
 
 pod2usage 1 if $help;
 
@@ -29,14 +22,7 @@ if ($version) {
 
 my ($str, $regex) = map { decode 'UTF-8', $_ } @ARGV;
 
-# Check if multiple matches are requested
-if ($global) {
-    # () = forces list context
-    () = $str =~ /$regex/g;
-}
-else {
-    $str =~ /$regex/;
-}
+reg $str, $regex, global => $global, color => !$no_color;
 
 =head1 NAME
 
@@ -54,7 +40,7 @@ reg - re 'debug' wrapper
 
 =head1 OPTIONS
 
-=over 8
+=over 4
 
 =item B<-global>
 
