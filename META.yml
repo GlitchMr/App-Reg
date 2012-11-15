@@ -20,3 +20,19 @@ resources:
     url: https://github.com/GlitchMr/App-Reg.git
     web: https://github.com/GlitchMr/App-Reg
     type: git
+prereqs:
+  build:
+    requires:
+      'Test::More': '0'
+  runtime:
+    requires:
+      perl: '5.010'
+      'ExtUtils::MakeMaker': '0'
+      strict: '0'
+      warnings: '0'
+      Exporter: '0'
+      re: '0'
+      'Getopt::Long': '0'
+      'Pod::Usage': '0'
+      Encode: '0'
+      
