@@ -36,4 +36,4 @@ like execute('a', 'a'), qr/\e/, 'Colors';
 # No colors
 unlike execute('--no-colors', 'a', 'a'), qr/\e/, 'No colors';
 # Version should show current version
-like execute('--version'), qr/\b$App::Reg::VERSION\b/, 'Version';
+like execute('--version'), qr/\b\Q$App::Reg::VERSION\E\b/, 'Version';
