@@ -18,7 +18,7 @@ sub execute {
     # sure if perl executable is surely the executable that tests the
     # module.
     my $executable = File::Spec->catfile(qw/bin reg/);
-    my $pid = open3 gensym, '>&STDERR', \*PH, $^X, $executable, @_;
+    my $pid = open3 gensym, \*PH, \*PH, $^X, $executable, @_;
     
     my $output = "";
     while (<PH>) {
