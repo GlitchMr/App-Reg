@@ -31,7 +31,7 @@ sub execute {
 like execute('a', 'a'), qr/anchored utf8 ["`]/, 'UTF-8';
 # But when executed with ASCII, it shouldn't mention UTF-8
 like execute('--ascii', 'a', 'a'), qr/anchored ["`]/, 'ASCII option';
-# Color option should have escape sequences
-like execute('a', 'a'), qr/\e/, 'Colors';
+# No colors
+unlike execute('--no-colors', 'a', 'a'), qr/\e/, 'No colors';
 # Version should show current version
 like execute('--version'), qr/\b\Q$App::Reg::VERSION\E\b/, 'Version';
